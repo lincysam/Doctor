@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			DoctorApp
+		</title>
+		<style>
+			
+			.container{
+			padding:100px 200px
+			}
+		</style>
+	</head>
+	<body style="background-color:grey">
+		<form method="post" action="">
+			<div class="container">
+			
+				
+				
+	<h1><center>Welcome To DoctorApp Application </center></h1><br>
+					<h2>{{docid}}</h2>
+				<input type="hidden" value="{{docid}}">
+		<a href="/doctoraccount/doctor_availability?doctorid={{docid}}">Your Availability</a><br><br>
+		
+		
+		<a href="/doctoraccount/doctor_schedule?doctorid={{docid}}">Scheduled Appointments</a><br><br>
+		
+		<a href="/doctoraccount/list?doctorid={{docid}}">List of Hospitals</a><br><br>
+			
+		
+		<a href="/doctor/dlogin">Logout</a><br><br>
+		</div>
+		</form>
+	</body>
+</html>

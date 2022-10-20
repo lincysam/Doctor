@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.container{
+			padding:100px 200px
+			}
+		</style>
+	
+	</head>
+	<body>
+		<form method="post" action="/patientaccount/patientdetails">
+			{% csrf_token %}
+			<div class="container">
+			<table align="center" bgcolor="yellow" cellpadding:"2" cellspacing:"2">
+				<h3>{{ loginmsg }}</h3>
+				<h3>{{ invalidmsg }}</h3>
+				<th><h2>Patient Login</h2></th>
+				<tr>
+					<td><b>Username:</b> <input style="margin-left:14px;height:30px" type="text" name="pname"></td>
+					<td><a href="/patient/patientreg">SIGN UP</a></td>
+					<br>
+					
+				</tr>
+				<tr>
+					<td><b>Password:</b> <input style="margin-left:14px;height:30px" type="password" name="pwd"></td><br>
+				</tr>
+				<tr>
+					<td align="center">
+						<a href="forgotpwd.html"><i>forgot password</i></a>
+						<input type="submit" value="Login" style="background:skyblue"></td>
+					
+				
+				</tr>
+			</table>
+			</div>
+		</form>
+	</body>
+</html>

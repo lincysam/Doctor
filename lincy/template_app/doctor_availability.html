@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<style>
+	.container{
+			padding: 10px;
+			border-radius: 4px;
+			height:600px;
+			
+			background-color:skyblue;}
+	.list{
+		position: absolute;
+
+		top: 10px;
+
+		right: 20px;
+
+		font-size: 20px
+	}
+	.regular {
+	
+	
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+	.btn {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+	</style>
+	</head>
+	<body bgcolor="white">
+		<form action="/doctoraccount/doctor_save" align="center" method="post">
+			{% csrf_token %}
+			<div class="list">
+			<a href="/doctoraccount/list?doctorid={{docid}}">List of Hospitals</a>
+			<a href="/doctor/dlogin">Logout</a><br><br>
+			</div>
+			<center><h1>Welcome to the Application</h1></center>
+			<div class="container">
+				<h2>{{display}}</h2>
+				<h2>{{msg}}</h2>
+				<h2>{{docid}}</h2>
+				<table cellspacing="25px">
+				<tr><td>
+					<h2>Please Register Your Availability</h2><br><br>
+					<input type="hidden" value="{{docid}}" name="docid">
+					</td>
+				</tr>
+				<tr><td>
+					<b><label>Hospital </label></b> 
+					<select name="hospitals" style="margin-left:60px;height:35px;width:250px">
+						<option value="select">select</option>
+						{% for hospt in hosptdatad %}
+						<option value='{{hospt.id}}'>{{hospt.hosptname}}</option>
+						{% endfor %}
+					</select></td>
+				</tr>
+				<tr>
+					<td>
+					<b><label> Department</label></b>
+					<select name="department" style="margin-left:25px;height:35px;width:250px">
+						<option value="select">select</option>
+						{% for dept in deptdatad%}
+						<option value='{{dept.id}}'>{{dept.deptname}}</option>
+						{% endfor %}
+					</select></td>
+					
+				</tr>
+				<tr><td>
+					<b><label style="margin-left:200px">Availability </label></b> 
+							<input type="checkbox" id="1" name="days[]" value="Monday" >Monday 
+							<input type="checkbox" id="2" name="days[]" value="Tuesday">Tuesday
+							<input type="checkbox" id="3" name="days[]" value="Wednesday">Wednesday
+							<input type="checkbox" id="4" name="days[]" value="Thursday" >Thursday
+							<input type="checkbox" id="5" name="days[]" value="Friday" >Friday
+							<input type="checkbox" id="6" name="days[]" value="Saturday" >Saturday
+					</td>
+				</tr>
+				<tr><td>
+			<input type="submit" value="Save" class="btn"></td>
+				</tr>
+			</table>
+			</div>
+		</form>
+	</body>
+</html>

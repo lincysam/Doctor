@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		.back{
+			position: absolute;
+
+		top: 10px;
+
+		right: 20px;
+
+		font-size: 20px
+		}
+		</style>
+	<script>
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js">
+		function myalert()
+				
+		{		var result = confirm("Are you want to delete?");
+					if(result){
+						$.ajax({
+						type: "GET",
+						url: ='/doctoraccount/doctordelete?eachid={{i.id}}&doctorid={{docid}}',
+						});
+					}
+					//var result = confirm("Are you want to delete?");
+					//if(result){
+						//const Http = new XMLHttpRequest();
+						//const url='/doctoraccount/doctordelete?eachid={{i.id}}&doctorid={{docid}}';
+						//Http.open("GET", url);
+						//Http.send();
+
+						//Http.onreadystatechange = (e) => {
+							//console.log(Http.responseText)
+					//}
+					
+							//}
+					//$.ajax({
+					//url:"/doctoraccount/doctordelete?eachid={{i.id}}&doctorid={{docid}}",
+					//context: document.body});
+							
+		}
+	</script>
+	</head>
+	<body bgcolor="skyblue">
+		<form action="">
+			
+			<center><h1>List of Hospital</h1></center>
+			<div class="back">
+				<a href="/doctor/dlogin">Logout</a><br><br>
+			</div>
+		
+				
+			<table cellpadding="2" cellspacing="2" align="center" border="2">
+				<tr>
+					<th>Hospital Name</th>
+					<th>Days</th>
+				</tr>
+				{% for i in listdata %}
+				
+				<tr>
+					
+					<td> {{i.hospital}}</td>
+					<td>{{i.available_days}}</td>
+					
+					<td><a href="/doctoraccount/doctordelete?eachid={{i.id}}&doctorid={{docid}}" onclick='myalert();'> delete</a></td>
+					<td><a href="">update</a></td>
+					
+				</tr>
+				{% endfor %}
+				
+			</table>
+		</form>
+		</form>
+	</body>
+</html>

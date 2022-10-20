@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body{
+				background-color:LightGray;
+			}
+			.container{
+			padding:100px 200px
+			}
+			
+		.back{
+			position: absolute;
+
+		top: 10px;
+
+		right: 20px;
+
+		font-size: 20px
+		}
+		
+		</style>
+		
+
+		{% load static %} 
+			<!--<script src="{% static '/js/consultation.js' %}" type="text/javascript"></script> -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+		<script>
+			function myfunction()
+					{
+						var x = document.getElementById("department").value;
+						var y = document.getElementById("hosptname").value;
+						//alert(x+" ,"+y);
+						$.ajax({
+							type: "GET",
+							url: "/patientaccount/newdata",
+							 
+							 
+							data: {
+							"dept": x,
+							"hospt":y,},
+							//dataType: "json",
+							//success:function(data)
+							//{
+								
+							//}
+							})
+					}
+		</script>
+	</head>
+	<body>
+		<form action="">
+		<div class="back">
+				<a href="/doctor/plogin">Logout</a><br><br>
+			</div>
+		<div class="container">
+			<h1><center>Patient Consultation</center></h1>
+			{% csrf_token %}
+				<h2>{{patientid}}</h2>
+				{% for patient in pdata %}
+				<h2>Welcome {{patient.fname}}</h2>
+				{% endfor %}
+			<b><label>Hospitals</label></b>
+			<select id="hosptname" style="margin-left:60px" id="hospt">
+				<option value="select">--select--</option>
+				{% for hospt in hosptdata %}
+				<option value='{{hospt.id}}'>{{hospt.hospital}}</option>
+				{% endfor %}
+			</select><br><br>
+			
+			<b><label> Department</label></b>
+			<select id="department" style="margin-left:40px" onchange="myfunction()">
+				<option value="select">--select--</option>
+				
+				{% for dept in hosptdata %}
+				<option value='{{dept.id}}'>{{dept.deptname}}</option>
+				{% endfor %}
+			</select><br><br>
+			
+			
+			<b><label>Available Doctors</label></b>
+			
+			<select name="Doctors" style="margin-left:50px">
+				<option value="--select--">select</option>
+				{% for doctname in hosptdata %}
+				<option value="doctname.id">{{doctname.doctorname }}</option>
+				{% endfor %}
+			</select><br><br>
+			<b><label>Consultation Days</label></b>
+			<select name="days"style="margin-left:50px">
+				<option value="--select--">select</option>
+				{% for days in hospdata %}
+				<option value="">{{days.available_days}}</option>
+				{% endfor %}
+			</select><br><br>
+			<b><label>Token Number</label></b>
+			<input Type="text" name="token" value="{{placeholder}}"><br><br>
+			<input type="submit" value="Appointment">
+			
+			
+			</div>
+		</form>
+	</body>
+</html>
